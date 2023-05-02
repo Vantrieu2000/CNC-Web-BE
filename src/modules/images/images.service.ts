@@ -3,6 +3,7 @@ import { CreateImageDto } from "./dto/create-image.dto";
 import { UpdateImageDto } from "./dto/update-image.dto";
 import { Image } from "./entities/image.entity";
 import { ImageRepository } from "./images.repository";
+import { BaseService } from "src/common/base/base.services";
 
 @Injectable()
 export class ImagesService {
