@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { AutoMap } from '@automapper/classes';
 import { Transform, Type } from 'class-transformer';
 import {
   IsBoolean,
@@ -8,6 +9,12 @@ import {
   Max,
   Min,
 } from 'class-validator';
+
+export abstract class BaseDto {
+  @ApiProperty()
+  @AutoMap()
+  id: string;
+}
 
 export class RESDateStatusDto {
   @ApiProperty()

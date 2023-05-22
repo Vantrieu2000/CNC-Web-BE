@@ -9,7 +9,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { editFileName, imageFileFilter } from 'src/common/util/file-util';
 
@@ -18,6 +18,18 @@ import { editFileName, imageFileFilter } from 'src/common/util/file-util';
 export class UploadController {
   @Post('')
   @ApiOperation({ summary: 'params is image' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+        type: 'object',
+        properties: {
+            image: {
+                type: 'string',
+                format: 'binary',
+            },
+        },
+    },
+})
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({

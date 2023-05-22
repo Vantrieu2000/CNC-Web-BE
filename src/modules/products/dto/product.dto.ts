@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsNotEmpty, } from "class-validator";
-import { BaseDto } from "src/common/dto/common";
+import { IsArray, IsNotEmpty } from "class-validator";
+import { AbstractEntity } from "src/common/abstract/entity.abstract";
 
-export class CreateProductDto {
+export class ProductDto extends AbstractEntity {
+
   @ApiProperty()
   @IsNotEmpty()
   name: string;
@@ -35,6 +36,4 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsArray()
   images: [];
-  
 }
-

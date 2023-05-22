@@ -31,6 +31,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@automapper/classes": "^8.7.7",
+    "@automapper/core": "^8.7.7",
+    "@automapper/nestjs": "^8.7.7",
     "@aws-sdk/client-ses": "^3.142.0",
     "@nestjs/common": "^8.2.6",
     "@nestjs/config": "^1.1.6",
