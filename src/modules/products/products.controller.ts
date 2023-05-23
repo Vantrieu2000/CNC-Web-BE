@@ -9,6 +9,8 @@ import {
   HttpStatus,
   HttpCode,
   UseInterceptors,
+  Query,
+  ValidationPipe,
 } from "@nestjs/common";
 import { ProductsService } from "./products.service";
 import { CreateProductDto } from "./dto/create-product.dto";
@@ -17,6 +19,7 @@ import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Product } from "./entities/product.entity";
 import { MapInterceptor } from "@automapper/nestjs";
 import { ProductDto } from "./dto/product.dto";
+import { FindAdDto } from "./dto/search-product.dto";
 
 @ApiTags("products")
 @Controller("products")
@@ -35,13 +38,25 @@ export class ProductsController {
   }
 
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: ProductDto,
+  })
+  @UseInterceptors(MapInterceptor(ProductDto, Product))
+  findAll(@Query(new ValidationPipe({ transform: true }))
+  filter: FindAdDto) {
+    return this.productsService.findAll(filter);
   }
 
   @Get(":id")
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+        status: HttpStatus.OK,
+        type: ProductDto,
+    })
   findOne(@Param("id") id: string) {
-    return this.productsService.findOne(+id);
+    return this.productsService.findOne(id);
   }
 
   @Patch(":id")

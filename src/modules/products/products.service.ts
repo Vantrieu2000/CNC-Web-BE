@@ -5,6 +5,7 @@ import { Product } from './entities/product.entity';
 import { ProductRepository } from './product.repository';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
+import { FindAdDto } from './dto/search-product.dto';
 
 @Injectable()
 export class ProductsService  {
@@ -12,16 +13,17 @@ export class ProductsService  {
 }
 
   async create(createProductDto: CreateProductDto) : Promise<Product> {
-    const product : Product = this.productRepository.create(createProductDto)
+    const product : Product = await this.productRepository.save(createProductDto)
     return product;
   }
 
-  findAll() {
-    return `This action returns all products`;
+  async findAll(filter : FindAdDto) {
+    const [data , total] : [Product[] , number] = await this.productRepository.findAll(filter)
+    return {data , total};
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findOne(id: string) {
+    return this.productRepository.findById(id);
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {

@@ -7,6 +7,7 @@ import { AuthorizationGuard } from './modules/auth/authorization.guard';
 import { UploadModule } from './modules/upload/upload.module';
 import { ProductsModule } from './modules/products/products.module';
 import { ImagesModule } from './modules/images/images.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { ImagesModule } from './modules/images/images.module';
     UploadModule,
     JwtService,
     ProductsModule,
-    ImagesModule
+    ImagesModule,
+    CategoryModule
   ],
   controllers: [],
   providers: [

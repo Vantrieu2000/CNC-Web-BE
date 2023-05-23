@@ -35,7 +35,7 @@ export class Product extends AbstractEntity {
   @AutoMap()
   detail: string;
 
-  @OneToMany(() => Image, (image) => {image.id}, {
+  @OneToMany(() => Image, (image) => image.product, {
     onDelete: 'CASCADE'
   })
   image : Image[];

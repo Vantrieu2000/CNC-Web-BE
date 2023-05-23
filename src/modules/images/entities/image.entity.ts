@@ -11,7 +11,7 @@ export class Image extends AbstractEntity {
   @Column({nullable: true})
   image: string;
 
-  @ManyToOne(() => Product, (Product) => Product.id, {
+  @ManyToOne(() => Product, (product) => product.image, {
     onDelete: 'CASCADE'
   })
   product : Product;
