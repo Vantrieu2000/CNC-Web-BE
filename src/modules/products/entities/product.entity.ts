@@ -1,7 +1,8 @@
 import { AbstractEntity } from "src/common/abstract/entity.abstract";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Image } from "src/modules/images/entities/image.entity"
 import { AutoMap } from "@automapper/classes";
+import { Category } from "src/modules/category/entities/category.entity";
 
 
 @Entity()
@@ -35,9 +36,18 @@ export class Product extends AbstractEntity {
   @AutoMap()
   detail: string;
 
+  @Column()
+  @AutoMap()
+  categoryId: string;
+
   @OneToMany(() => Image, (image) => image.product, {
     onDelete: 'CASCADE'
   })
   image : Image[];
+
+  @ManyToOne(() => Category, (category) => category.product, {
+    onDelete: 'CASCADE'
+  })
+  category : Category;
 
 }

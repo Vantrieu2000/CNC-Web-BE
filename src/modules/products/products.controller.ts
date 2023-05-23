@@ -32,7 +32,7 @@ export class ProductsController {
     status: HttpStatus.CREATED,
     type: ProductDto,
   })
-  @UseInterceptors(MapInterceptor(ProductDto, Product))
+  @UseInterceptors(MapInterceptor(CreateProductDto, Product))
   create(@Body() createProductDto: CreateProductDto) : Promise<Product>  {
     return this.productsService.create(createProductDto);
   }

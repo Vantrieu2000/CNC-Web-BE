@@ -32,6 +32,10 @@ export class ProductDto extends AbstractEntity {
   @IsNotEmpty()
   detail: string;
 
+  @ApiProperty()
+  @IsNotEmpty()
+  category: string;
+
   @ApiProperty({ type: [String] })
   @IsNotEmpty()
   @IsArray()
