@@ -15,6 +15,7 @@ export class ProductRepository extends Repository<Product> {
     }
     return await product.getManyAndCount();
   }
+
   async findById(id: string): Promise<Product> {
     const product: Product = await this.createQueryBuilder("product")
       .leftJoinAndSelect("product.image", "image")

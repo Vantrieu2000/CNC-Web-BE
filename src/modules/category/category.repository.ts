@@ -15,4 +15,15 @@ export class CategoryRepository extends Repository<Category> {
     }
     return await product.getManyAndCount();
   }
+
+  async findById(id: string): Promise<Category> {
+    const category: Category = await this.createQueryBuilder("category")
+      .leftJoinAndSelect("category.product", "product")
+      .where(`category.id = :id`, { id: id })
+      .getOne();
+    if (!category) {
+      throw new NotFoundException("PRODUCT_NOT_FOUND");
+    }
+    return category;
+  }
 }
