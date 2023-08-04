@@ -34,12 +34,17 @@ export class CreateProductDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  category: Category;
+  categoryId: string;
 
   @ApiProperty({ type: [String] })
   @IsNotEmpty()
   @IsArray()
   images: [];
+
+  @ApiProperty({ type: [String] })
+  @IsNotEmpty()
+  @IsArray()
+  detailProducts: [];
   
 }
 

@@ -6,6 +6,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Category } from './entities/category.entity';
 import { MapInterceptor } from '@automapper/nestjs';
 import { FindAdDto } from '../products/dto/search-product.dto';
+import { CategoryDto } from './dto/category.dto';
 
 @Controller('category')
 @ApiTags("category")
@@ -33,6 +34,17 @@ export class CategoryController {
   findAll(@Query(new ValidationPipe({ transform: true }))
   filter: FindAdDto) {
     return this.categoryService.findAll(filter);
+  }
+
+  @Get('getListCategory')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    type: [CategoryDto],
+  })
+  @UseInterceptors(MapInterceptor(CreateCategoryDto, Category))
+  findAllCategoryList() {
+    return this.categoryService.findList();
   }
 
   @Get(':id')

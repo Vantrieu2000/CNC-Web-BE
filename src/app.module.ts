@@ -8,6 +8,7 @@ import { UploadModule } from './modules/upload/upload.module';
 import { ProductsModule } from './modules/products/products.module';
 import { ImagesModule } from './modules/images/images.module';
 import { CategoryModule } from './modules/category/category.module';
+import { DetailProductModule } from './modules/detail-product/detail-product.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CategoryModule } from './modules/category/category.module';
     ProductsModule,
     ImagesModule,
     CategoryModule,
+    DetailProductModule,
   ],
   controllers: [],
   providers: [

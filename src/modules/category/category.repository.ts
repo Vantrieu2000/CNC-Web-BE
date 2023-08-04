@@ -8,7 +8,10 @@ export class CategoryRepository extends Repository<Category> {
     const product: SelectQueryBuilder<Category> = this.createQueryBuilder("category").leftJoinAndSelect(
       "category.product",
       "product"
-    );
+    ).leftJoinAndSelect(
+      "product.image",
+      "image"
+    ).orderBy("product.createdOnDate","DESC");
     if (isAll !== "true") product.take(take).skip(skip);
     if (search) {
       product.where(`category.name like :name`, { name: `%${search}%` });

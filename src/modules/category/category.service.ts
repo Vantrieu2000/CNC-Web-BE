@@ -19,6 +19,11 @@ export class CategoryService {
     return { data, total };
   }
 
+  async findList() {
+    const [data, total]: [Category[], number] = await this.categoryRepository.findAndCount();
+    return { data, total };
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} category`;
   }

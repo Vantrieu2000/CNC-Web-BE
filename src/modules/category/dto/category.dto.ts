@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
+import { BaseDto } from "src/common/dto/common";
 
-export class CreateCategoryDto {
+export class CategoryDto extends BaseDto {
 
   @ApiProperty()
   @IsNotEmpty()
@@ -10,6 +11,4 @@ export class CreateCategoryDto {
   @ApiProperty()
   @IsNotEmpty()
   categoryImage: string;
-
-  
 }
