@@ -41,7 +41,6 @@ export class ProductDto extends AbstractEntity {
   images: [];
 
   @ApiProperty({ type: [String] })
-  // @IsNotEmpty()
   @IsArray()
   detailProducts: [];
 }

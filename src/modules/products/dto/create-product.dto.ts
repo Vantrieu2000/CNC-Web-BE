@@ -1,7 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsNotEmpty } from "class-validator";
-import { BaseDto } from "src/common/dto/common";
-import { Category } from "src/modules/category/entities/category.entity";
 
 export class CreateProductDto {
   @ApiProperty()
@@ -42,7 +40,6 @@ export class CreateProductDto {
   images: [];
 
   @ApiProperty({ type: [String] })
-  // @IsNotEmpty()
   @IsArray()
   detailProducts: [];
 }
