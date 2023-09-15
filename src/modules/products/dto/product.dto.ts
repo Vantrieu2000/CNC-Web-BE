@@ -3,7 +3,6 @@ import { IsArray, IsNotEmpty } from "class-validator";
 import { AbstractEntity } from "src/common/abstract/entity.abstract";
 
 export class ProductDto extends AbstractEntity {
-
   @ApiProperty()
   @IsNotEmpty()
   name: string;
@@ -42,7 +41,7 @@ export class ProductDto extends AbstractEntity {
   images: [];
 
   @ApiProperty({ type: [String] })
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsArray()
   detailProducts: [];
 }
